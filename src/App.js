@@ -185,19 +185,25 @@ const App = () => {
           </button>
         </div>
         <div className="text-center mt-8 mb-2">
-          <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">Follow us on Social Media</h2>
-          <div className="flex justify-center space-x-4">
-            <a href="https://facebook.com" className="text-blue-600 hover:underline">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="w-8 h-8" />
-            </a>
-            <a href="https://twitter.com" className="text-blue-400 hover:underline">
-              <img src="https://images2.thanhnien.vn/528068263637045248/2023/7/24/f1x5vdqx0aa9sgt-16901896163331463104829.jpg" alt="Twitter" className="w-8 h-8 rounded-lg" />
-            </a>
-            <a href="https://instagram.com" className="text-pink-500 hover:underline">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
-            </a>
-          </div>
+        <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
+          Follow us on Social Media
+        </h2>
+        <div className="flex justify-center space-x-4">
+          <a href="https://facebook.com" className="text-blue-600 hover:underline">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="w-8 h-8" />
+          </a>
+          <a href="https://twitter.com" className="text-blue-400 hover:underline">
+            <img src="https://images2.thanhnien.vn/528068263637045248/2023/7/24/f1x5vdqx0aa9sgt-16901896163331463104829.jpg" alt="Twitter" className="w-8 h-8 rounded-lg" />
+          </a>
+          <a href="https://instagram.com" className="text-pink-500 hover:underline">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
+          </a>
+          <a href="https://telegram.org" className="text-blue-400 hover:underline">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 rounded-lg" />
+          </a>
         </div>
+      </div>
+
       </div>
     </div>
   );
