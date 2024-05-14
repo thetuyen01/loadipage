@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Flag from 'react-world-flags';
+import {  toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [votes, setVotes] = useState({ person1: 0, person2: 0 });
@@ -65,27 +67,46 @@ const App = () => {
     }
     navigator.clipboard.writeText(text)
       .then(() => {
-        alert("Copy thành công");
+        toast.success("Copy thành công");
       })
       .catch(err => {
-        alert("Copy thất bại: " + err);
+        toast.warning("Copy thất bại: " + err);
       });
   };
 
   const handleVote = (person) => {
+    const lastPersion1 = localStorage.getItem('person1') ? localStorage.getItem('person1'):null;
+    const lastPersion2 = localStorage.getItem('person2') ? localStorage.getItem('person2'):null;
+    if (person === lastPersion1 || person === lastPersion2){
+     return  toast.warning(`You voted for Mr. ${person}`)
+    }
     setVotes((prevVotes) => ({
       ...prevVotes,
       [person]: prevVotes[person] + 1
     }));
     if (person === "person1") {
-      alert("You just voted for Mr. Trump, thank you");
+      toast.success("You just voted for Mr. Trump, thank you");
+      localStorage.setItem('person1', person)
     } else {
-      alert("You just voted for Mr. Biden, thank you");
+      toast.success("You just voted for Mr. Biden, thank you");
+      localStorage.setItem('person2', person)
     }
   };
 
   return (
     <div className="background">
+       <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       <nav className="bg-white shadow-lg">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
@@ -153,7 +174,7 @@ const App = () => {
             <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
             <button
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-              onClick={() => handleVote('person1')}
+              onClick={() => handleVote('Trump')}
             >
               Vote for Trump
             </button>
@@ -187,7 +208,7 @@ const App = () => {
             <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              onClick={() => handleVote('person2')}
+              onClick={() => handleVote('Biden')}
             >
               Vote for Biden
             </button>
