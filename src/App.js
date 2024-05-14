@@ -10,6 +10,14 @@ const App = () => {
   const buttonRef = useRef(null);
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBouncing(prev => !prev);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         menuRef.current && 
@@ -136,7 +144,7 @@ const App = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container">
-          <div id="vote-trump" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
+          <div id="vote-trump" className={`bg-white p-6 rounded-lg shadow-md text-center ${!isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
             <img 
               src='https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS6HuPXKLP6UfXBrzMz42_2w-8nPjgCVZNmoA2AcNt_KXR8vcMdMra-IijGBznEsxwEFIwzRSRTlRE5kDM' 
               alt="Trump" 
@@ -170,7 +178,7 @@ const App = () => {
             </div>
             <h2 className="text-2xl font-semibold"><span className='text-red-600'>Trump</span> vs <span className='text-blue-500'>Biden</span></h2>
           </div>
-          <div id="vote-biden" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? '' : 'bouncing'} lg:mt-16 sm:mt-0`}>
+          <div id="vote-biden" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
             <img 
               src='https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcStpnv_tQ4R7IwFANRwU3wv6K76_5jcrwiQgn40GdwgDQ0b7Xz7Dhycce6WR4zRFSlcAvgqAzUtQ4B0wdA' 
               alt="Biden" 
