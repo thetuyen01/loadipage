@@ -36,11 +36,24 @@ const App = () => {
     }
   };
 
+
+  const copyToClipboard = (text, content) => {
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            alert("coppy thành công")
+            
+        })
+        .catch(err => {
+          alert("coppy thất bại")
+        });
+};
+
+
   return (
     <div className="background" >
       <nav className="bg-white shadow-lg">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex justify-between">
+          <div className="flex justify-center">
             <div className="flex space-x-7">
               <div>
                 <a href="#" className="flex items-center py-4 px-2">
@@ -62,9 +75,11 @@ const App = () => {
         </div>
       </nav>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 bg-opacity-50">
-        <h1 className="text-4xl font-bold mb-8 text-center">US Presidential Candidates</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center  p-5 rounded-2xl mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-400 to-orange-500">US Presidential Candidates</h1>
         <div className="text-center mb-8">
-          <p className="text-lg font-medium">Token Contract: 9H2E...5oVD</p>
+          <p onClick={()=>copyToClipboard("abfdsdasd")} className="text-lg font-medium bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
+            Token Contract: 9H2E...5oVD
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container">
           <div id="vote-trump" className="bg-white p-6 rounded-lg shadow-md text-center lg:mt-16 sm:nt-0">
@@ -117,7 +132,7 @@ const App = () => {
           </div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md text-center mt-8">
-          <h2 className="text-2xl font-semibold mb-4">About the Project</h2>
+          <h2 className="text-2xl font-bold mb-4 gradient-text">About the Project</h2>
           <p className="text-gray-700 mb-4">
             This project is designed to engage the community in a unique way, allowing people to vote for their preferred US presidential candidate using tokens. Our goal is to create a fun and interactive experience while highlighting the importance of civic engagement.
           </p>
@@ -129,7 +144,7 @@ const App = () => {
           </p>
         </div>
         <div id="tokenomics" className="text-center mt-8">
-          <h2 className="text-2xl font-semibold mb-4">Tokenomics</h2>
+          <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">Tokenomics</h2>
           <div className="grid grid-cols-3 md:grid-cols-3 lg:gap-8 sm:gap-0">
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <img src="https://cellphones.com.vn/sforum/wp-content/uploads/2024/02/avatar-anh-meo-cute-1.jpg" alt="Total Supply" className="lg:w-20 lg:h-20 sm:w-10 sm:h-10 object-cover object-center mx-auto mb-4" />
@@ -156,7 +171,7 @@ const App = () => {
           </button>
         </div>
         <div className="text-center mt-8 mb-2">
-          <h2 className="text-2xl font-semibold mb-4">Follow us on Social Media</h2>
+          <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">Follow us on Social Media</h2>
           <div className="flex justify-center space-x-4">
             <a href="https://facebook.com" className="text-blue-600 hover:underline">
               <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="w-8 h-8" />

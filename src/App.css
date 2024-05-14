@@ -29,6 +29,11 @@ button {
 button:hover {
   background-color: #2980b9; /* Màu xanh dương đậm hơn */
 }
+.gradient-text {
+  background: linear-gradient(to right, #04378a, #ea6404);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 
 /* Liên kết mạng xã hội */
