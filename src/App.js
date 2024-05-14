@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Flag from 'react-world-flags';
 
 const App = () => {
   const [votes, setVotes] = useState({ person1: 0, person2: 0 });
-  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [isBouncing, setIsBouncing] = useState(false);
 
-  const handleVote = (person) => {
-    setVotes((prevVotes) => ({
-      ...prevVotes,
-      [person]: prevVotes[person] + 1
-    }));
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBouncing(prev => !prev);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleCaptcha = async () => {
     return new Promise((resolve, reject) => {
@@ -28,7 +30,6 @@ const App = () => {
   const handleBuyNow = async () => {
     try {
       const token = await handleCaptcha();
-      setCaptchaVerified(true);
       alert("Captcha verified, proceeding with the purchase.");
       // Handle the buy action here
     } catch (error) {
@@ -36,30 +37,43 @@ const App = () => {
     }
   };
 
-
-  const copyToClipboard = (text, content) => {
+  const copyToClipboard = (text) => {
+    if (!navigator.clipboard) {
+      alert("Clipboard API not supported or not available in this browser.");
+      return;
+    }
     navigator.clipboard.writeText(text)
-        .then(() => {
-            alert("coppy thành công")
-            
-        })
-        .catch(err => {
-          alert("coppy thất bại")
-        });
-};
+      .then(() => {
+        alert("Copy thành công");
+      })
+      .catch(err => {
+        alert("Copy thất bại: " + err);
+      });
+  };
 
+  const handleVote = (person) => {
+    setVotes((prevVotes) => ({
+      ...prevVotes,
+      [person]: prevVotes[person] + 1
+    }));
+    if (person === "person1") {
+      alert("You just voted for Mr. Trump, thank you");
+    } else {
+      alert("You just voted for Mr. Biden, thank you");
+    }
+  };
 
   return (
     <div className="background" >
       <nav className="bg-white shadow-lg">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex justify-center">
-            <div className="flex space-x-7">
-              <div>
-                <a href="#" className="flex items-center py-4 px-2">
-                  <span className="font-semibold text-gray-500 text-lg">Logo</span>
-                </a>
-              </div>
+          <div className="flex justify-between">
+            <div>
+              <a href="/" className="flex items-center py-4 px-2">
+                <span className="font-semibold text-gray-500 text-lg">Logo</span>
+              </a>
+            </div>
+            <div className="flex flex-row mx-auto">
               <div className="hidden md:flex items-center space-x-1">
                 <a href="#vote-trump" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Trump</a>
                 <a href="#vote-biden" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Biden</a>
@@ -67,22 +81,22 @@ const App = () => {
                 <a href="#buy-now" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Buy Now</a>
               </div>
             </div>
-            <div className="hidden md:flex items-center space-x-3 ">
-              <a href="#" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-200 transition duration-300">EN</a>
-              <a href="#" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-200 transition duration-300">VN</a>
+            <div className="ml-12 hidden md:flex items-center space-x-3 ">
+              <Flag code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
+              <Flag code="cn" style={{ width: 45, height: 30 }} alt="China Flag" />
             </div>
           </div>
         </div>
       </nav>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 bg-opacity-50">
-        <h1 className="text-4xl font-bold mb-8 text-center  p-5 rounded-2xl mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-400 to-orange-500">US Presidential Candidates</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center p-5 rounded-2xl mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-400 to-orange-500">US Presidential Candidates</h1>
         <div className="text-center mb-8">
-          <p onClick={()=>copyToClipboard("abfdsdasd")} className="text-lg font-medium bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
+          <p onClick={() => copyToClipboard("abfdsdasd")} className="text-lg font-medium bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
             Token Contract: 9H2E...5oVD
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container">
-          <div id="vote-trump" className="bg-white p-6 rounded-lg shadow-md text-center lg:mt-16 sm:nt-0">
+          <div id="vote-trump" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
             <img 
               src='https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS6HuPXKLP6UfXBrzMz42_2w-8nPjgCVZNmoA2AcNt_KXR8vcMdMra-IijGBznEsxwEFIwzRSRTlRE5kDM' 
               alt="Trump" 
@@ -99,7 +113,7 @@ const App = () => {
           <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center mb-12">
             <div className="flex justify-center items-center mb-4">
               <img 
-                src='https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS6HuPXKLP6UfXBrzMz42_2w-8nPjgCVZNmoA2AcNt_KXR8vcMdMra-IijGBznEsxwEFIwzRSRTlRE5kDM' 
+                src='https://media.cnn.com/api/v1/images/stellar/prod/2024-04-18t183704z-186531273-rc2697aqpilg-rtrmadp-3-usa-trump-new-york.JPG?c=16x9&q=h_833,w_1480,c_fill' 
                 alt="Trump" 
                 className="w-28 h-28 object-cover object-center rounded-full mx-2" 
               />
@@ -109,14 +123,14 @@ const App = () => {
                 className="w-24 h-24 object-cover object-center  mx-2"
               />
               <img 
-                src='https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcStpnv_tQ4R7IwFANRwU3wv6K76_5jcrwiQgn40GdwgDQ0b7Xz7Dhycce6WR4zRFSlcAvgqAzUtQ4B0wdA' 
+                src='https://media.cnn.com/api/v1/images/stellar/prod/221018153621-joe-biden-dnc-101822.jpg?c=16x9&q=h_833,w_1480,c_fill' 
                 alt="Biden" 
                 className="w-28 h-28 object-cover object-center rounded-full mx-2" 
               />
             </div>
             <h2 className="text-2xl font-semibold"><span className='text-red-600'>Trump</span> vs <span className='text-blue-500'>Biden</span></h2>
           </div>
-          <div id="vote-biden" className="bg-white p-6 rounded-lg shadow-md text-center lg:mt-16 sm:nt-0">
+          <div id="vote-biden" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? '' : 'bouncing'} lg:mt-16 sm:mt-0`}>
             <img 
               src='https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcStpnv_tQ4R7IwFANRwU3wv6K76_5jcrwiQgn40GdwgDQ0b7Xz7Dhycce6WR4zRFSlcAvgqAzUtQ4B0wdA' 
               alt="Biden" 
