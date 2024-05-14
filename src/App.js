@@ -1,27 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Flag from 'react-world-flags';
-import {  toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [votes, setVotes] = useState({ person1: 0, person2: 0 });
   const [isBouncing, setIsBouncing] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // Thêm trạng thái cho menu di động
-  const menuRef = useRef(null); // Tạo ref cho menu
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsBouncing(prev => !prev);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false); // Đóng menu nếu nhấp bên ngoài
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(event.target) && 
+        buttonRef.current && 
+        !buttonRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
       }
     };
 
@@ -29,7 +25,7 @@ const App = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [menuRef]);
+  }, [menuRef, buttonRef]);
 
   const handleCaptcha = async () => {
     return new Promise((resolve, reject) => {
@@ -69,39 +65,19 @@ const App = () => {
   };
 
   const handleVote = (person) => {
-    const lastPersion1 = localStorage.getItem('person1') ? localStorage.getItem('person1'):null;
-    const lastPersion2 = localStorage.getItem('person2') ? localStorage.getItem('person2'):null;
-    if (person === lastPersion1 || person === lastPersion2){
-     return  toast.warning(`You voted for Mr. ${person}`)
-    }
     setVotes((prevVotes) => ({
       ...prevVotes,
       [person]: prevVotes[person] + 1
     }));
     if (person === "person1") {
-      toast.success("You just voted for Mr. Trump, thank you");
-      localStorage.setItem('person1', person)
+      alert("You just voted for Mr. Trump, thank you");
     } else {
-      toast.success("You just voted for Mr. Biden, thank you");
-      localStorage.setItem('person2', person)
+      alert("You just voted for Mr. Biden, thank you");
     }
-    
   };
 
   return (
-    <div className="background" >
-      <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+    <div className="background">
       <nav className="bg-white shadow-lg">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
@@ -110,9 +86,9 @@ const App = () => {
                 <span className="font-semibold text-gray-500 text-lg">Logo</span>
               </a>
             </div>
-            {/* Thêm nút cho menu di động */}
             <div className="md:hidden flex items-center">
               <button
+                ref={buttonRef}
                 className="mobile-menu-button"
                 onClick={() => setIsOpen(!isOpen)}
               >
@@ -129,26 +105,23 @@ const App = () => {
                 </svg>
               </button>
             </div>
-            {/* Menu desktop */}
             <div className="hidden md:flex items-center space-x-1">
               <a href="#vote-trump" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Trump</a>
               <a href="#vote-biden" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Biden</a>
               <a href="#tokenomics" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Tokenomics</a>
               <a href="#buy-now" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Buy Now</a>
             </div>
-            {/* Menu cờ cho desktop */}
             <div className="ml-12 hidden md:flex items-center space-x-3 ">
               <Flag code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
-              <Flag code="cn" style={{ width: 45, height: 30 }} alt="China Flag" />
+              <Flag code="cn" style={{ width: 40, height: 30 }} alt="China Flag" />
             </div>
           </div>
         </div>
-        {/* Menu di động */}
         <div ref={menuRef} className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-          <a onClick={()=>setIsOpen(false)} href="#vote-trump" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Trump</a>
-          <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Biden</a>
-          <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="block py-2 px-4 text-sm hover:bg-gray-200">Tokenomics</a>
-          <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200">Buy Now</a>
+          <a href="#vote-trump" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Trump</a>
+          <a href="#vote-biden" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Biden</a>
+          <a href="#tokenomics" className="block py-2 px-4 text-sm hover:bg-gray-200">Tokenomics</a>
+          <a href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200">Buy Now</a>
           <div className="flex justify-center space-x-4 mt-4">
             <Flag code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
             <Flag code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" />
@@ -172,7 +145,7 @@ const App = () => {
             <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
             <button
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-              onClick={() => handleVote('Trump')}
+              onClick={() => handleVote('person1')}
             >
               Vote for Trump
             </button>
@@ -206,7 +179,7 @@ const App = () => {
             <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              onClick={() => handleVote('Biden')}
+              onClick={() => handleVote('person2')}
             >
               Vote for Biden
             </button>
