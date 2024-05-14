@@ -151,7 +151,7 @@ const App = () => {
           <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200">Buy Now</a>
           <div className="flex justify-center space-x-4 mt-4">
             <Flag code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
-            <Flag code="cn" style={{ width: 45, height: 30 }} alt="China Flag" />
+            <Flag code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" />
           </div>
         </div>
       </nav>
