@@ -37,7 +37,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="background" >
       <nav className="bg-white shadow-lg">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
@@ -61,7 +61,7 @@ const App = () => {
           </div>
         </div>
       </nav>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 bg-opacity-50">
         <h1 className="text-4xl font-bold mb-8 text-center">US Presidential Candidates</h1>
         <div className="text-center mb-8">
           <p className="text-lg font-medium">Token Contract: 9H2E...5oVD</p>
@@ -90,6 +90,7 @@ const App = () => {
               />
               <img 
                 src='https://t4.ftcdn.net/jpg/03/14/06/47/360_F_314064760_kYuSNOW983FhCgbnCsiXvevPDcK3ZyG9.jpg'
+                alt="Person"
                 className="w-24 h-24 object-cover object-center  mx-2"
               />
               <img 
