@@ -10,6 +10,26 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const partners = [
+    {
+      name: 'Raydium',
+      logo: 'https://cdn.coin68.com/images/20240209084051-83f15054-0369-4d4e-b2c5-27b6398482d7-102.jpg',
+      alt: 'raydium Logo',
+      link:'https://raydium.io'
+    },
+    {
+      name: 'Dexscreener',
+      logo: 'https://play-lh.googleusercontent.com/XNljDSnh_XmM53mREFo6SLXQDtedBh01bvNC7ReCLJSq-Nx2uCtg5pDGKH0OMLq4Uszh',
+      alt: 'dexscreener Logo',
+      link:'https://dexscreener.com'
+    },
+    {
+      name: 'Solana',
+      logo: 'https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png',
+      alt: 'solana Logo',
+      link:'https://solana.com'
+    },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -156,10 +176,11 @@ const App = () => {
               </button>
             </div>
             <div className="hidden md:flex items-center space-x-1">
-              <a href="#vote-trump" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Trump</a>
-              <a href="#vote-biden" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Biden</a>
-              <a href="#tokenomics" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Tokenomics</a>
-              <a href="#buy-now" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Buy Now</a>
+              <a onClick={()=>setIsOpen(false)} href="#vote-trump" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Trump</a>
+              <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Vote Biden</a>
+              <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Tokenomics</a>
+              <a onClick={()=>setIsOpen(false)} href="#OurPartners" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Our Partners</a>
+              <a onClick={()=>setIsOpen(false)} href="#buy-now" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Buy Now</a>
             </div>
             <div className="ml-12 hidden md:flex items-center space-x-3 ">
               <Flag code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
@@ -168,10 +189,11 @@ const App = () => {
           </div>
         </div>
         <div ref={menuRef} className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-          <a href="#vote-trump" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Trump</a>
-          <a href="#vote-biden" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Biden</a>
-          <a href="#tokenomics" className="block py-2 px-4 text-sm hover:bg-gray-200">Tokenomics</a>
-          <a href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200">Buy Now</a>
+          <a onClick={()=>setIsOpen(false)} href="#vote-trump" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Trump</a>
+          <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="block py-2 px-4 text-sm hover:bg-gray-200">Vote Biden</a>
+          <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="block py-2 px-4 text-sm hover:bg-gray-200">Tokenomics</a>
+          <a onClick={()=>setIsOpen(false)} href="#OurPartners" className="block py-2 px-4 text-sm hover:bg-gray-200">Our Partners</a>
+          <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200">Buy Now</a>
           <div className="flex justify-center space-x-4 mt-4">
             <Flag code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
             <Flag code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" />
@@ -276,6 +298,19 @@ const App = () => {
               <p className="text-yellow-500 text-xl">ZERO</p>
             </div>
           </div>
+          {/*  */}
+          <div id='OurPartners' className="bg-beige p-8">
+            <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">Our Partners</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {partners.map((partner, index) => (
+                <a target="_blank" rel="noopener noreferrer" href={partner.link} key={index} className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6">
+                  <img src={partner.logo} alt={partner.alt} className="h-16 mb-4" />
+                  <span className="text-xl font-semibold text-center">{partner.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          {/*  */}
           <button
             id="buy-now"
             className="bg-red-500 text-white px-6 py-2 rounded-full mt-4 hover:bg-red-600"
@@ -301,7 +336,7 @@ const App = () => {
         <a target="_blank" rel="noopener noreferrer" href="https://telegram.org" className="text-blue-400 hover:underline">
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 rounded-lg" />
         </a>
-        <a target="_blank" rel="noopener noreferrer" href="https://raydium.io" className="hover:underline">
+        {/* <a target="_blank" rel="noopener noreferrer" href="https://raydium.io" className="hover:underline">
           <img src="https://cdn.coin68.com/images/20240209084051-83f15054-0369-4d4e-b2c5-27b6398482d7-102.jpg" alt="Raydium" className="w-8 h-8 rounded-lg" />
         </a>
         <a target="_blank" rel="noopener noreferrer" href="https://dexscreener.com" className="hover:underline">
@@ -309,7 +344,7 @@ const App = () => {
         </a>
         <a target="_blank" rel="noopener noreferrer" href="https://solana.com" className="hover:underline">
           <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png" alt="Solana" className="w-8 h-8 rounded-lg" />
-        </a>
+        </a> */}
       </div>
     </div>
 
