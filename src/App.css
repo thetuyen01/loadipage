@@ -9,6 +9,7 @@ body {
   background-size: cover;
   background-position: center;
   height: 100%;
+  filter: grayscale(1%) brightness(95%);
 }
 
 h1, h2 {
@@ -56,6 +57,11 @@ button:hover {
 
 .bouncing {
   animation: bounce 5s infinite;
+}
+.sticky-toast {
+  position: sticky;
+  top: 0;
+  z-index: 9999; /* Ensure it stays on top of other elements */
 }
 
 
