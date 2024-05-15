@@ -269,6 +269,50 @@ function Home() {
             </p>
             </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container">
+          <div id="vote-biden" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
+              <img 
+                src={`${config.doamin}`+data?.image_candidate_two}
+                alt="Biden" 
+                className="w-48 h-48 mx-auto object-cover object-center rounded-lg" 
+              />
+              <p className="text-gray-700 mb-4">{data?.lorem_candidate_two}</p>
+              <button
+                  disabled={votes.person2 > 0 ? true : false}
+                  className={`${
+                    votes.person2 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
+                  } px-4 py-2 rounded`}
+                  onClick={() => handleVote('Biden')}
+              >
+                  {
+                    votes.person2 > 0? data?.btn_voted_candidate_two:data?.btn_vote_candidate_two
+                  } 
+              </button>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center mb-12">
+              <div className="flex justify-center items-center mb-4">
+                
+                <img 
+                  src={`${config.doamin}`+data?.image_candidate_two_vs}
+                  alt="Biden" 
+                  className="w-28 h-28 object-cover object-center rounded-full mx-2" 
+                />
+                <div className='flex flex-col'>
+                    <img 
+                    src='https://t4.ftcdn.net/jpg/03/14/06/47/360_F_314064760_kYuSNOW983FhCgbnCsiXvevPDcK3ZyG9.jpg'
+                    alt="Person"
+                    className="w-24 h-24 object-cover object-center  mx-2"
+                    />
+                    <img src={VS} alt="vss" className="lg:w-20 lg:h-20 sm:w-10 sm:h-10 object-cover object-center mx-auto mb-4"/>
+                </div>
+                <img 
+                  src={`${config.doamin}`+data?.image_candidate_one_vs} 
+                  alt="Trump" 
+                  className="w-28 h-28 object-cover object-center rounded-full mx-2" 
+                />
+              </div>
+              <h2 className="text-2xl font-semibold"><span className='text-red-600'>{data?.name_candidate_one}</span> vs <span className='text-blue-500'>{data?.name_candidate_two}</span></h2>
+            </div>
+
             <div id="vote-trump" className={`bg-white p-6 rounded-lg shadow-md text-center ${!isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
               <img 
                 src={`${config.doamin}`+data?.image_candidate_one} 
@@ -285,48 +329,6 @@ function Home() {
               >
                   {
                     votes.person1 > 0? data?.btn_voted_candidate_one:data?.btn_vote_candidate_one
-                  } 
-              </button>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center mb-12">
-              <div className="flex justify-center items-center mb-4">
-                <img 
-                  src={`${config.doamin}`+data?.image_candidate_one_vs} 
-                  alt="Trump" 
-                  className="w-28 h-28 object-cover object-center rounded-full mx-2" 
-                />
-                <div className='flex flex-col'>
-                    <img 
-                    src='https://t4.ftcdn.net/jpg/03/14/06/47/360_F_314064760_kYuSNOW983FhCgbnCsiXvevPDcK3ZyG9.jpg'
-                    alt="Person"
-                    className="w-24 h-24 object-cover object-center  mx-2"
-                    />
-                    <img src={VS} alt="vss" className="lg:w-20 lg:h-20 sm:w-10 sm:h-10 object-cover object-center mx-auto mb-4"/>
-                </div>
-                <img 
-                  src={`${config.doamin}`+data?.image_candidate_two_vs}
-                  alt="Biden" 
-                  className="w-28 h-28 object-cover object-center rounded-full mx-2" 
-                />
-              </div>
-              <h2 className="text-2xl font-semibold"><span className='text-red-600'>{data?.name_candidate_one}</span> vs <span className='text-blue-500'>{data?.name_candidate_two}</span></h2>
-            </div>
-            <div id="vote-biden" className={`bg-white p-6 rounded-lg shadow-md text-center ${isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
-              <img 
-                src={`${config.doamin}`+data?.image_candidate_two}
-                alt="Biden" 
-                className="w-48 h-48 mx-auto object-cover object-center rounded-lg" 
-              />
-              <p className="text-gray-700 mb-4">{data?.lorem_candidate_two}</p>
-              <button
-                  disabled={votes.person2 > 0 ? true : false}
-                  className={`${
-                    votes.person2 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
-                  } px-4 py-2 rounded`}
-                  onClick={() => handleVote('Biden')}
-              >
-                  {
-                    votes.person2 > 0? data?.btn_voted_candidate_two:data?.btn_vote_candidate_two
                   } 
               </button>
             </div>
