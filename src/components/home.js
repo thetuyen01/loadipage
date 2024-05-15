@@ -310,7 +310,7 @@ function Home() {
                   className="w-28 h-28 object-cover object-center rounded-full mx-2" 
                 />
               </div>
-              <h2 className="text-2xl font-semibold"><span className='text-red-600'>{data?.name_candidate_one}</span> vs <span className='text-blue-500'>{data?.name_candidate_two}</span></h2>
+              <h2 className="text-2xl font-semibold"><span className='text-red-600'>{data?.name_candidate_two}</span> vs <span className='text-blue-500'>{data?.name_candidate_one}</span></h2>
             </div>
 
             <div id="vote-trump" className={`bg-white p-6 rounded-lg shadow-md text-center ${!isBouncing ? 'bouncing' : ''} lg:mt-16 sm:mt-0`}>
