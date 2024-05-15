@@ -239,7 +239,7 @@ function Home() {
                 <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">{data?.btn_vote_candidate_two}</a>
                 <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">{data?.tokenomics}</a>
                 <a onClick={()=>setIsOpen(false)} href="#OurPartners" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">{data?.title_our_partners}</a>
-                <a onClick={()=>setIsOpen(false)} href="#buy-now" className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">{data?.buy_now}</a>
+                <a onClick={()=>setIsOpen(false)} href="#buy-now" className="py-4 px-2  font-semibold hover:text-blue-500 transition duration-300 text-orange-600">{data?.buy_now}</a>
               </div>
               <div className="ml-12 hidden md:flex items-center space-x-3 ">
                 <Flag onClick={()=>setLanguage('English')} code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
@@ -252,7 +252,7 @@ function Home() {
             <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.btn_vote_candidate_two}</a>
             <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.tokenomics}</a>
             <a onClick={()=>setIsOpen(false)} href="#OurPartners" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.title_our_partners}</a>
-            <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.buy_now}</a>
+            <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200 text-orange-600">{data?.buy_now}</a>
             <div className="flex justify-center space-x-4 mt-4">
               <Flag onClick={()=>setLanguage('English')} code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
               <Flag onClick={()=>setLanguage('China')} code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" />
