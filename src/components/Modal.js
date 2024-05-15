@@ -15,7 +15,6 @@ const Modal = ({ isOpen, onClose }) => {
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${localStorage.getItem('access')}`
                 },
             });
             console.log(response)
