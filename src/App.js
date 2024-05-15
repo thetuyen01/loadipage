@@ -65,10 +65,10 @@ const App = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(
         () => {
-          alert('Copied to clipboard!');
+          toast.success('Copied to clipboard!');
         },
         (err) => {
-          console.error('Could not copy text: ', err);
+          toast.error('Could not copy text: ');
         }
       );
     } else {
@@ -79,9 +79,9 @@ const App = () => {
       textArea.select();
       try {
         document.execCommand('copy');
-        alert('Copied to clipboard!');
+        toast.success('Copied to clipboard!');
       } catch (err) {
-        console.error('Fallback: Could not copy text: ', err);
+        toast.error('Fallback: Could not copy text: ');
       }
       document.body.removeChild(textArea);
     }
@@ -200,7 +200,9 @@ const App = () => {
                 } px-4 py-2 rounded`}
                 onClick={() => handleVote('Trump')}
             >
-                Vote for Trump
+                {
+                  votes.person1 > 0? "Voted":"Vote"
+                } for Trump
             </button>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center mb-12">
@@ -237,7 +239,9 @@ const App = () => {
                 } px-4 py-2 rounded`}
                 onClick={() => handleVote('Biden')}
             >
-                Vote for Biden
+                {
+                  votes.person2 > 0? "Voted":"Vote"
+                } for Biden
             </button>
           </div>
         </div>
