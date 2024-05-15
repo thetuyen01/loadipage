@@ -62,14 +62,19 @@ const App = () => {
   };
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        toast.success("Copy thành công");
-      })
-      .catch(err => {
-        toast.warning("Copy thất bại: " + err);
-      });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          toast.success("Copy thành công");
+        })
+        .catch(err => {
+          toast.warning("Copy thất bại: " + err);
+        });
+    } else {
+      toast.warning("Clipboard API không được hỗ trợ");
+    }
   };
+  
 
   const handleVote = (person) => {
     const lastPersion1 = localStorage.getItem('person1') ? localStorage.getItem('person1'):null;
