@@ -110,29 +110,35 @@ const App = () => {
   
 
   const handleVote = (person) => {
-    const lastPersion1 = localStorage.getItem('person1') ? localStorage.getItem('person1'):null;
-    const lastPersion2 = localStorage.getItem('person2') ? localStorage.getItem('person2'):null;
-    if (person === lastPersion1 || person === lastPersion2){
-     return  toast.warning(`You voted for Mr. ${person}`)
+    const lastVotedPerson = localStorage.getItem('votedPerson');
+
+    if (lastVotedPerson) {
+        if (person === lastVotedPerson) {
+            return toast.warning(`You have already voted for Mr. ${person}`);
+        } else {
+            return toast.warning(`You can only vote once. You already voted for Mr. ${lastVotedPerson}`);
+        }
     }
+
+    localStorage.setItem('votedPerson', person);
+
     if (person === "Trump") {
-      toast.success("You just voted for Mr. Trump, thank you");
-      localStorage.setItem('person1', person)
-      setVotes((prevVotes) => ({
-        ...prevVotes,
-        person1: prevVotes['person1'] + 1
-      }));
-      localStorage.setItem('personbtn1', votes.person1+1)
+        toast.success("You just voted for Mr. Trump, thank you");
+        setVotes((prevVotes) => ({
+            ...prevVotes,
+            person1: prevVotes['person1'] + 1
+        }));
+        localStorage.setItem('personbtn1', votes.person1 + 1);
     } else {
-      toast.success("You just voted for Mr. Biden, thank you");
-      localStorage.setItem('person2', person)
-      setVotes((prevVotes) => ({
-        ...prevVotes,
-        person2: prevVotes['person2'] + 1
-      }));
-      localStorage.setItem('personbtn2', votes.person2+1)
+        toast.success("You just voted for Mr. Biden, thank you");
+        setVotes((prevVotes) => ({
+            ...prevVotes,
+            person2: prevVotes['person2'] + 1
+        }));
+        localStorage.setItem('personbtn2', votes.person2 + 1);
     }
-  };
+};
+
 
   return (
     <div className="background">
