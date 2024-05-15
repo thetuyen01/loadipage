@@ -61,19 +61,20 @@ const App = () => {
     window.open('https://dexview.com', '_blank');
   };
 
-  const copyToClipboard = (text) => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text)
+  const copyToClipboard = (text, content) => {
+    navigator.clipboard.writeText(text)
         .then(() => {
-          toast.success("Copy thành công");
+            if (content){
+              toast.success("Copy thành công");
+            }else{
+              toast.warning("Copy thất bại: " );
+            }
+            
         })
         .catch(err => {
-          toast.warning("Copy thất bại: " + err);
+          toast.warning("Clipboard API không được hỗ trợ");
         });
-    } else {
-      toast.warning("Clipboard API không được hỗ trợ");
-    }
-  };
+};
   
 
   const handleVote = (person) => {
