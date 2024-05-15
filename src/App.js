@@ -301,7 +301,7 @@ const App = () => {
           {/*  */}
           <div id='OurPartners' className="bg-beige p-8">
             <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">Our Partners</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {partners.map((partner, index) => (
                 <a target="_blank" rel="noopener noreferrer" href={partner.link} key={index} className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6">
                   <img src={partner.logo} alt={partner.alt} className="h-16 mb-4" />
