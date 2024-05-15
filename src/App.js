@@ -5,7 +5,7 @@ import {  toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const [votes, setVotes] = useState({ person1: 0, person2: 0 });
+  const [votes, setVotes] = useState({ person1: localStorage.getItem('personbtn1')? Number(localStorage.getItem('personbtn1')):0, person2: localStorage.getItem('personbtn2')? Number(localStorage.getItem('personbtn2')):0 });
   const [isBouncing, setIsBouncing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -51,18 +51,19 @@ const App = () => {
   };
 
   const handleBuyNow = async () => {
-    try {
-      const token = await handleCaptcha();
-      alert("Captcha verified, proceeding with the purchase.");
-      // Handle the buy action here
-    } catch (error) {
-      alert("Please complete the captcha verification.");
-    }
+    // try {
+    //   const token = await handleCaptcha();
+    //   toast.success("Captcha verified, proceeding with the purchase.");
+    //   // Handle the buy action here
+    // } catch (error) {
+    //   toast.error("Please complete the captcha verification.");
+    // }
+    window.open('https://dexview.com', '_blank');
   };
 
   const copyToClipboard = (text) => {
     if (!navigator.clipboard) {
-      alert("Clipboard API not supported or not available in this browser.");
+      toast.warning("Clipboard API not supported or not available in this browser.");
       return;
     }
     navigator.clipboard.writeText(text)
@@ -80,16 +81,22 @@ const App = () => {
     if (person === lastPersion1 || person === lastPersion2){
      return  toast.warning(`You voted for Mr. ${person}`)
     }
-    setVotes((prevVotes) => ({
-      ...prevVotes,
-      [person]: prevVotes[person] + 1
-    }));
-    if (person === "person1") {
+    if (person === "Trump") {
       toast.success("You just voted for Mr. Trump, thank you");
       localStorage.setItem('person1', person)
+      setVotes((prevVotes) => ({
+        ...prevVotes,
+        person1: prevVotes['person1'] + 1
+      }));
+      localStorage.setItem('personbtn1', votes.person1+1)
     } else {
       toast.success("You just voted for Mr. Biden, thank you");
       localStorage.setItem('person2', person)
+      setVotes((prevVotes) => ({
+        ...prevVotes,
+        person2: prevVotes['person2'] + 1
+      }));
+      localStorage.setItem('personbtn2', votes.person2+1)
     }
   };
 
@@ -160,7 +167,7 @@ const App = () => {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 bg-opacity-50">
         <h1 className="text-4xl font-bold mb-8 text-center p-5 rounded-2xl mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-400 to-orange-500">US Presidential Candidates</h1>
         <div className="text-center mb-8">
-          <p onClick={() => copyToClipboard("abfdsdasd")} className="text-lg font-medium bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
+          <p onClick={() => copyToClipboard("abfdsdasd")} className="cursor-pointer text-lg font-medium bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
             Token Contract: 9H2E...5oVD
           </p>
         </div>
@@ -173,10 +180,13 @@ const App = () => {
             />
             <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
             <button
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-              onClick={() => handleVote('Trump')}
+                disabled={votes.person1 > 0 ? true : false}
+                className={`${
+                  votes.person1 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600 '
+                } px-4 py-2 rounded`}
+                onClick={() => handleVote('Trump')}
             >
-              Vote for Trump
+                Vote for Trump
             </button>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center mb-12">
@@ -207,10 +217,13 @@ const App = () => {
             />
             <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              onClick={() => handleVote('Biden')}
+                disabled={votes.person2 > 0 ? true : false}
+                className={`${
+                  votes.person2 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
+                } px-4 py-2 rounded`}
+                onClick={() => handleVote('Biden')}
             >
-              Vote for Biden
+                Vote for Biden
             </button>
           </div>
         </div>
@@ -254,24 +267,33 @@ const App = () => {
           </button>
         </div>
         <div className="text-center mt-8 mb-2">
-        <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
-          Follow us on Social Media
-        </h2>
-        <div className="flex justify-center space-x-4">
-          <a href="https://facebook.com" className="text-blue-600 hover:underline">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="w-8 h-8" />
-          </a>
-          <a href="https://twitter.com" className="text-blue-400 hover:underline">
-            <img src="https://images2.thanhnien.vn/528068263637045248/2023/7/24/f1x5vdqx0aa9sgt-16901896163331463104829.jpg" alt="Twitter" className="w-8 h-8 rounded-lg" />
-          </a>
-          <a href="https://instagram.com" className="text-pink-500 hover:underline">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
-          </a>
-          <a href="https://telegram.org" className="text-blue-400 hover:underline">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 rounded-lg" />
-          </a>
-        </div>
+      <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r p-5 rounded-2xl from-blue-500 via-blue-400 via-orange-400 to-orange-500">
+        Follow us on Social Media
+      </h2>
+      <div className="flex justify-center space-x-4">
+        <a target="_blank" rel="noopener noreferrer" href="https://facebook.com" className="text-blue-600 hover:underline">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="w-8 h-8" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com" className="text-blue-400 hover:underline">
+          <img src="https://images2.thanhnien.vn/528068263637045248/2023/7/24/f1x5vdqx0aa9sgt-16901896163331463104829.jpg" alt="Twitter" className="w-8 h-8 rounded-lg" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://instagram.com" className="text-pink-500 hover:underline">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://telegram.org" className="text-blue-400 hover:underline">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 rounded-lg" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://raydium.io" className="hover:underline">
+          <img src="https://cdn.coin68.com/images/20240209084051-83f15054-0369-4d4e-b2c5-27b6398482d7-102.jpg" alt="Raydium" className="w-8 h-8 rounded-lg" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://dexscreener.com" className="hover:underline">
+          <img src="https://play-lh.googleusercontent.com/XNljDSnh_XmM53mREFo6SLXQDtedBh01bvNC7ReCLJSq-Nx2uCtg5pDGKH0OMLq4Uszh" alt="Dexscreener" className="w-8 h-8 rounded-lg" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://solana.com" className="hover:underline">
+          <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png" alt="Solana" className="w-8 h-8 rounded-lg" />
+        </a>
       </div>
+    </div>
 
       </div>
     </div>
