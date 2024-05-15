@@ -62,10 +62,6 @@ const App = () => {
   };
 
   const copyToClipboard = (text) => {
-    if (!navigator.clipboard) {
-      toast.warning("Clipboard API not supported or not available in this browser.");
-      return;
-    }
     navigator.clipboard.writeText(text)
       .then(() => {
         toast.success("Copy thành công");
