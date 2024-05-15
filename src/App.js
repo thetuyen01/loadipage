@@ -61,20 +61,17 @@ const App = () => {
     window.open('https://dexview.com', '_blank');
   };
 
-  const copyToClipboard = (text, content) => {
-    navigator.clipboard.writeText(text)
-        .then(() => {
-            if (content){
-              toast.success("Copy thành công");
-            }else{
-              toast.warning("Copy thất bại: " );
-            }
-            
-        })
-        .catch(err => {
-          toast.warning("Clipboard API không được hỗ trợ");
-        });
-};
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        toast.success('Copied to clipboard!');
+      },
+      (err) => {
+        console.error('Could not copy text: ', err);
+      }
+    );
+  };
+
   
 
   const handleVote = (person) => {
