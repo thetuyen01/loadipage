@@ -1,0 +1,159 @@
+1.Documentation for File App.js
+    Introduction
+        The File App.js is an essential part of our React application. It contains routes and logic to navigate users to different pages within the application.
+    Dependencies
+        - React: A JavaScript library for building user interfaces.
+        - useEffect, useState: React hooks for managing side effects and state in functional components.
+        - BrowserRouter, Route, Routes: Components from the react-router-dom library to manage routing in the React application.
+        - config.json: Configuration file located in the same directory as App.js, containing configurations for the application.
+    Components
+        - Home: Component displaying the home page of the application.
+        - ConfigForm: Component allowing users to add new configurations.
+        - ConfigFromEdit: Component allowing users to edit existing configurations.
+        - ConfigList: Component displaying a list of configurations.
+        - Login: Component allowing users to log in to the system.
+        - AdminVote: Component managing votes from the admin side.
+    Important Features
+        - Check login status and refresh token: Use useEffect to check the login status and automatically refresh the token every 3 minutes if the user is logged in.
+        - Secure routes: Use PrivateRoute to protect routes that require login. If the user is not logged in, they will be redirected to the login page.
+
+2.Documentation for File Home.js
+    Introduction
+        - The File Home.js is an important component in our React application. It contains user interface components and logic to display the home page of the application.
+    Dependencies
+        - React: A JavaScript library for building user interfaces.
+        - useState, useEffect, useRef: React hooks for managing state and side effects in functional components.
+        - Flag: Library for displaying national flags.
+        - toast, ToastContainer: Component and CSS from the react-toastify library for displaying notifications.
+        - axios: Library for making HTTP requests.
+        - config.json: Configuration file located in the same directory as Home.js, containing configurations for the application.
+    Components and Functions
+        - Modal: Component for displaying a modal in the application.
+        - openModal, closeModal: Functions to open and close the modal.
+        - fetchData: Function to fetch data from the server when the user changes the language.
+        - partners: Array containing information about application partners.
+        - handleCaptcha: Function to handle reCAPTCHA when the user performs a specific action.
+        - handleBuyNow: Function to handle the action of buying a product.
+        - copyToClipboard: Function to copy text to the clipboard.
+        - submitVote: Function to send votes to the server when the user votes.
+    Important Features
+        - Language change: Allows users to switch between English and Chinese languages.
+        - Dynamic data display: Displays data from the server such as information about candidates, tokenomics, and partners.
+        - Voting and submitting votes: Allows users to vote and submit votes to the server.
+        - Modal display: Displays a modal after the user votes.
+    Here are some important points about configuring reCAPTCHA in the Home.js file:
+        - reCAPTCHA Site Key: In the handleCaptcha function, 6Le9edspAAAAAE-2G3IxBEMel1d2_lq7YHiHomBh is the Site Key of reCAPTCHA. This is a unique code for each website and is used to connect to Google's reCAPTCHA service.
+        - Verification action: In the handleCaptcha function, LOGIN is the action passed to reCAPTCHA for verification. In this case, reCAPTCHA is used to verify users when they log in or perform a similar action.
+        - Result handling: After the user completes reCAPTCHA, a token will be generated and returned. In the handleCaptcha function, this token is returned to the calling function for further processing, such as performing a specific action after successful verification.
+        - Error handling: In case the user does not complete reCAPTCHA or there is an error during the verification process, an error message will be displayed to the user via toastify.
+3.Documentation for File PrivateRoute.js
+    PrivateRoute Component:
+        - This component checks whether the user has been authenticated by sending a refreshToken request to the server. If the user is authenticated, it renders an Outlet, allowing the user to continue to child Routes. If not, it redirects the user to the login page.
+    refreshToken Function:
+        - This function sends a refreshToken request to the server and stores the new token if the request is successful. If there is an error or the request is unsuccessful, it clears any stored tokens.
+
+4.Documentation for File Login.js
+    Introduction
+        - The File Login.js is an important component in our React application responsible for handling user login.
+    Dependencies
+        - axios: Library for making HTTP requests.
+        - React, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - config.json: Configuration file located in the same directory as Login.js, containing configurations for the application.
+        - useNavigate: Hook from the react-router-dom library for navigation within the application.
+    Functionality
+        - Login: Allows users to enter account information and send login requests to the server.
+        - Save token: After successful login, saves the token to localStorage for future requests.
+        - Redirect: Redirects the user to the configuration page after successful login.
+5.Documentation for File ListComponent.js
+    Dependencies
+        - axios: Library for making HTTP requests.
+        - React, useEffect, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - config.json: Configuration file located in the same directory as ListComponent.js, containing configurations for the application.
+        - useNavigate: Hook from the react-router-dom library for navigation within the application.
+        - Header: Header Component to display the page title.
+    Functionality
+        - Display configuration list: Displays a list of configurations from the server.
+        - Delete configuration: Allows users to delete configurations from the list.
+        - Redirect to edit configuration page: Allows users to redirect to the edit configuration page when clicking on a configuration in the list.
+6.Documentation for File ConfigForm.js
+    Introduction
+        - The File ConfigForm.js is an important component in our React application used for managing application configurations.
+    Dependencies
+        - axios: Library for making HTTP requests.
+        - React, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - react-router-dom: Library for navigation within the application.
+        - config.json: Configuration file located in the same directory as ConfigForm.js, containing configurations for the application.
+        - Header: Imported Header Component to display the page title.
+    Functionality
+        - Configuration management: Allows users to enter and submit application configuration information.
+        - Send requests: Uses axios to send requests to the server and save configuration information to the database.
+        - Preview image: Displays a preview of the logo and candidates' images.
+        - Navigation: Uses useNavigate from react-router-dom to redirect users to the configuration page after successful addition.
+7.Documentation for File ConfigFromEdit.js
+    Introduction
+        - The File ConfigFromEdit.js is an important part of our React application used for editing application configurations.
+    Dependencies
+        - axios: Library for making HTTP requests.
+        - React, useEffect, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - react-router-dom: Library for navigation within the application.
+        - config.json: Configuration file located in the same directory as ConfigFromEdit.js, containing configurations for the application.
+        - Header: Imported Header Component to display the page title.
+    Functionality
+        - Display edit form: Displays a form allowing users to edit configuration information.
+        - Send edit request: Uses axios to send a request to the server to update configuration information.
+        - Preview image: Displays a preview of the logo and candidates' images for users to preview before making changes.
+        - Navigation: Uses the useNavigate hook from react-router-dom to redirect users to another page after completing the operation.
+8.Documentation for File AdminVote.js
+    Introduction
+        - The File AdminVote.js is an important part of our React application used to display charts about voting results in the admin page.
+    Dependencies
+        - axios: Library for making HTTP requests.
+        - React, useEffect, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - config.json: Configuration file located in the same directory as AdminVote.js, containing configurations for the application.
+        - VoteChart: Imported VoteChart Component to display voting charts.
+        - Header: Imported Header Component to display the page title.
+    Functionality
+        - Get voting data: Uses axios to send a GET request to the server to retrieve voting data from the API.
+        - Display chart: Uses voting data to display a comparison chart of votes between candidates.
+        - Display title: Uses Header to display the title of the admin page.
+9.Documentation for File Header.js
+    Introduction
+        - The File Header.js is an important part of our React application used to display the header bar and navigation menu.
+    Dependencies
+        - React, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - react-router-dom: Library for navigation within the application.
+    Functionality
+        - Display header bar: Displays a header bar containing navigation links.
+        - Display navigation menu: Displays a navigation menu when on mobile devices and can be opened or closed.
+10.Documentation for File VoteChart.js
+    Introduction
+        - The File VoteChart.js is an important part of our React application used to display charts showing voting results between two candidates.
+    Dependencies
+        - React: Library for building user interfaces.
+    Functionality
+        - Display voting results: Uses data about the number of votes for two candidates to display a comparison chart.
+        - Calculate percentage of votes: Calculates the percentage of votes each candidate has in the total number of votes.
+11.Documentation for File Modal.js
+    Introduction
+        - The File Modal.js is an important part of our React application used to display a modal when opened.
+    Dependencies
+        - axios: Library for making HTTP requests.
+        - React, useEffect, useState: Libraries and hooks of React for building user interfaces and managing state.
+        - config.json: Configuration file located in the same directory as Modal.js, containing configurations for the application.
+        - VoteChart: Imported VoteChart Component to display voting result charts.
+    Functionality
+        - Get voting data: Uses axios to send a GET request to the server to retrieve voting data from the API.
+        - Display modal: Displays a modal containing voting result charts when opened.
+12.Documentation for File index.html
+    Introduction
+        - The File index.html is the main HTML page of the React application, used to display content and load necessary resources for the application.
+    Functionality
+        - Set metadata information: Sets metadata information such as charset, viewport, theme color, description, apple-touch-icon, etc.
+        - Connect with manifest.json: Connects with the manifest.json file to provide metadata when the web application is installed on mobile devices or computers.
+        - Load reCAPTCHA script: Loads the script from Google reCAPTCHA for use in the application.
+        - Declare content container: Declares a div with id="root" as a container for displaying the content of the React application.
+        - Provide guidance and notes: Provides guidance on enabling JavaScript and notes that this is a sample HTML file.
+13.How to Use
+        - Clone the repo from the source.
+        - Install dependencies using the command "npm install".
+        - Run the application using the command "npm start".
