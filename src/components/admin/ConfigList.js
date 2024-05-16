@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import config from '../../config.json'
+import Header from './Header';
 
 const ListComponent = () => {
     const [data, setData] = useState([])
@@ -20,11 +21,6 @@ const ListComponent = () => {
     
         fetchData();
       }, []);
-      const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-      const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-      };
       const handleNavigate = (path) => {
         return navigate(path);
       };
@@ -43,39 +39,26 @@ const ListComponent = () => {
           console.log('Deletion cancelled by user.');
         }
       }
+      const subString = (string, max_number)=>{
+          if (string.length > max_number) {
+
+            return string.substring(0, max_number);
+          } else {
+
+              return string;
+          }
+      }
       
 
   return (
     <>
-    <header className="bg-blue-600 text-white shadow-md">
-      <div className="container mx-auto flex justify-center items-center p-4">
-        <nav className="hidden md:flex space-x-4">
-          <Link to="/admin/config" className="hover:underline">Home</Link>
-          <Link to="/admin/vote" className="hover:underline">Vote</Link>
-        </nav>
-        <div className="md:hidden">
-          <button onClick={toggleMobileMenu} className="focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <nav className="px-4 pb-4 space-y-2">
-            <Link to="/admin/config" className="block text-gray-800 hover:bg-blue-700 p-2 rounded">Home</Link>
-            <Link to="/admin/vote" className="block text-gray-800 hover:bg-blue-700 p-2 rounded">Vote</Link>
-          </nav>
-        </div>
-      )}
-    </header>
+    <Header/>
     <div className="p-4 container mx-auto lg:w-1/2 sm:lg-full">
       {/* Bảng hiển thị trên Desktop */}
       <h1 className='text-center font-bold text-3xl mb-3'>List Config</h1>
       <div className="hidden md:block overflow-x-auto">
         <table className="min-w-full bg-white shadow rounded-lg">
-          <thead>
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr className="bg-gray-200">
               <th className="py-2 px-4 text-left">STT</th>
               <th className="py-2 px-4 text-left">Title Page</th>
@@ -97,11 +80,11 @@ const ListComponent = () => {
       </div>
 
       {/* Dạng cột hiển thị trên Mobile */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         {data?.map((item, index) => (
-          <div key={index} className="p-4 mb-4 bg-white shadow rounded-lg">
-            <div className="text-lg font-semibold text-gray-800">{item.title}</div>
-            <div className="text-sm text-gray-600">{item.description}</div>
+          <div onClick={()=>handleNavigate('/admin/edit/'+item.id)} key={index} className="p-4 mb-4 bg-white shadow rounded-lg cursor-pointer">
+            <div className="text-lg font-semibold text-gray-800">Title Page : {subString(item.title_page, 18)}...</div>
+            <div className="text-sm text-gray-600">Token Contract : {subString(item.value_token_contract, 18)}...</div>
           </div>
         ))}
       </div>

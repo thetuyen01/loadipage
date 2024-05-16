@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config.json'
+import Header from './Header';
 
 const ConfigForm = () => {
     const navigate = useNavigate();
@@ -122,37 +123,10 @@ const ConfigForm = () => {
             console.error('Error submitting form:', error);
         }
     };
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
 
     return (
       <>
-<header className="bg-blue-600 text-white shadow-md">
-      <div className="container mx-auto flex justify-center items-center p-4">
-        <nav className="hidden md:flex space-x-4">
-          <Link to="/admin/config" className="hover:underline">Home</Link>
-          <Link to="/admin/vote" className="hover:underline">Vote</Link>
-        </nav>
-        <div className="md:hidden">
-          <button onClick={toggleMobileMenu} className="focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <nav className="px-4 pb-4 space-y-2">
-            <Link to="/admin/config" className="block text-gray-800 hover:bg-blue-700 p-2 rounded">Home</Link>
-            <Link to="/admin/vote" className="block text-gray-800 hover:bg-blue-700 p-2 rounded">Vote</Link>
-          </nav>
-        </div>
-      )}
-    </header>
+        <Header/>
         <div className='container mx-auto mt-3 lg:w-1/2 sm:lg-full'>
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded shadow-md">
                 <h1 className='text-center font-bold text-3xl'>Add Config</h1>
@@ -179,7 +153,7 @@ const ConfigForm = () => {
                     name="logo"
                     id="logo"
                     onChange={handleChange}
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.logo && (
                     <img src={imagePreviews.logo} alt="Logo Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -197,7 +171,7 @@ const ConfigForm = () => {
                     id="titlePage"
                     value={formData.titlePage}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
 
@@ -212,7 +186,7 @@ const ConfigForm = () => {
                     id="valueTokenContract"
                     value={formData.valueTokenContract}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Value token contract: */}
@@ -226,7 +200,7 @@ const ConfigForm = () => {
                     id="tokenContract"
                     value={formData.tokenContract}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Image candidate one: */}
@@ -239,7 +213,7 @@ const ConfigForm = () => {
                     name="imageCandidateOne"
                     id="imageCandidateOne"
                     onChange={handleChange}
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateOne && (
                     <img src={imagePreviews.imageCandidateOne} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -255,7 +229,7 @@ const ConfigForm = () => {
                     name="imageCandidateTwo"
                     id="imageCandidateTwo"
                     onChange={handleChange}
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateTwo && (
                     <img src={imagePreviews.imageCandidateTwo} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -272,7 +246,7 @@ const ConfigForm = () => {
                     id="loremCandidateOne"
                     value={formData.loremCandidateOne}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Lorem candidate two: */}
@@ -286,7 +260,7 @@ const ConfigForm = () => {
                     id="loremCandidateTwo"
                     value={formData.loremCandidateTwo}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Btn vote candidate one */}
@@ -300,7 +274,7 @@ const ConfigForm = () => {
                     id="btnVoteCandidateOne"
                     value={formData.btnVoteCandidateOne}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Btn vote candidate two */}
@@ -314,7 +288,7 @@ const ConfigForm = () => {
                     id="btnVoteCandidateTwo"
                     value={formData.btnVoteCandidateTwo}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Btn voted candidate one: */}
@@ -328,7 +302,7 @@ const ConfigForm = () => {
                     id="btnVotedCandidateOne"
                     value={formData.btnVotedCandidateOne}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Btn voted candidate two: */}
@@ -342,7 +316,7 @@ const ConfigForm = () => {
                     id="btnVotedCandidateTwo"
                     value={formData.btnVotedCandidateTwo}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Name candidate one: */}
@@ -356,7 +330,7 @@ const ConfigForm = () => {
                     id="nameCandidateOne"
                     value={formData.nameCandidateOne}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Name candidate two: */}
@@ -370,7 +344,7 @@ const ConfigForm = () => {
                     id="nameCandidateTwo"
                     value={formData.nameCandidateTwo}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Image candidate one vs: */}
@@ -383,7 +357,7 @@ const ConfigForm = () => {
                     name="imageCandidateOneVs"
                     id="imageCandidateOneVs"
                     onChange={handleChange}
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateOneVs && (
                     <img src={imagePreviews.imageCandidateOneVs} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -399,7 +373,7 @@ const ConfigForm = () => {
                     name="imageCandidateTwoVs"
                     id="imageCandidateTwoVs"
                     onChange={handleChange}
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateTwoVs && (
                     <img src={imagePreviews.imageCandidateTwoVs} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -416,7 +390,7 @@ const ConfigForm = () => {
                     id="titleAboutProject"
                     value={formData.titleAboutProject}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Content about project: */}
@@ -430,7 +404,7 @@ const ConfigForm = () => {
                     id="contentAboutProject"
                     value={formData.contentAboutProject}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-52"
                 />
             </div>
             {/* Tokenomics: */}
@@ -444,7 +418,7 @@ const ConfigForm = () => {
                     id="tokenomics"
                     value={formData.tokenomics}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Total supply title: */}
@@ -458,7 +432,7 @@ const ConfigForm = () => {
                     id="totalSupplyTitle"
                     value={formData.totalSupplyTitle}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Total supply number: */}
@@ -472,7 +446,7 @@ const ConfigForm = () => {
                     id="totalSupplyNumber"
                     value={formData.totalSupplyNumber}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Lb burn: */}
@@ -486,7 +460,7 @@ const ConfigForm = () => {
                     id="lbBurn"
                     value={formData.lbBurn}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Yes */}
@@ -500,7 +474,7 @@ const ConfigForm = () => {
                     id="yes"
                     value={formData.yes}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Tax: */}
@@ -514,7 +488,7 @@ const ConfigForm = () => {
                     id="tax"
                     value={formData.tax}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Zero */}
@@ -528,7 +502,7 @@ const ConfigForm = () => {
                     id="zero"
                     value={formData.zero}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Title our partners: */}
@@ -542,7 +516,7 @@ const ConfigForm = () => {
                     id="titleOurPartners"
                     value={formData.titleOurPartners}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Buy now: */}
@@ -556,7 +530,7 @@ const ConfigForm = () => {
                     id="buyNow"
                     value={formData.buyNow}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Title social media: */}
@@ -570,7 +544,7 @@ const ConfigForm = () => {
                     id="titleSocialMedia"
                     value={formData.titleSocialMedia}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Link raydium: */}
@@ -584,7 +558,7 @@ const ConfigForm = () => {
                     id="linkRaydium"
                     value={formData.linkRaydium}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Link dexscreener: */}
@@ -598,7 +572,7 @@ const ConfigForm = () => {
                     id="linkDexscreener"
                     value={formData.linkDexscreener}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
             {/* Link solana: */}
@@ -612,7 +586,7 @@ const ConfigForm = () => {
                     id="linkSolana"
                     value={formData.linkSolana}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-slate-800 border shadow-sm h-10 shadow-blue-200"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
 

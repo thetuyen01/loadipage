@@ -59,8 +59,8 @@ const refreshToken = async (domain) => {
       localStorage.setItem('access', response.data.access);
       return true;
     } catch (error) {
-      console.log('error', error);
-      throw error; // Re-throw lỗi để được xử lý bởi caller (ở đây là useEffect)
+      localStorage.removeItem('refresh')
+      localStorage.removeItem('access')
     }
   };
 

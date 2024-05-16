@@ -1,7 +1,7 @@
 /* App.css */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f5f7fa; /* Màu xanh nhạt */
+  background-color: #f5f7fa; 
   color: #333;
 }
 .background {
@@ -18,7 +18,7 @@ h1, h2 {
 }
 
 .navbar, .footer {
-  background-color: #ffffff; /* Màu trắng */
+  background-color: #ffffff; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -28,7 +28,7 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9; /* Màu xanh dương đậm hơn */
+  background-color: #2980b9; 
 }
 .gradient-text {
   background: linear-gradient(to right, #04378a, #ea6404);
@@ -37,7 +37,7 @@ button:hover {
 }
 
 
-/* Liên kết mạng xã hội */
+
 .social-icons a {
   color: #3498db;
 }
@@ -58,12 +58,6 @@ button:hover {
 .bouncing {
   animation: bounce 5s infinite;
 }
-.sticky-toast {
-  position: sticky;
-  top: 0;
-  z-index: 9999; /* Ensure it stays on top of other elements */
-}
-
 
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap');

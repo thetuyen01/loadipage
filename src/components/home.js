@@ -180,7 +180,9 @@ function Home() {
           }));
           localStorage.setItem('personbtn2', votes.person2 + 1);
       }
-      openModal()
+      setTimeout(()=>{
+        openModal()
+      }, 2000)
   };
   
   
@@ -194,19 +196,8 @@ function Home() {
           Close
         </button>
         </Modal>
-        <ToastContainer
-            className='sticky-toast'
-            position="top-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            />
+        <ToastContainer className="mt-20" position="top-right"/>
+
         <nav className="bg-white shadow-md">
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex justify-between">
@@ -279,7 +270,7 @@ function Home() {
               <button
                   disabled={votes.person2 > 0 ? true : false}
                   className={`${
-                    votes.person2 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'
+                    votes.person2 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'
                   } px-4 py-2 rounded`}
                   onClick={() => handleVote('Biden')}
               >
@@ -323,7 +314,7 @@ function Home() {
               <button
                   disabled={votes.person1 > 0 ? true : false}
                   className={`${
-                    votes.person1 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600 '
+                    votes.person1 > 0 ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600 '
                   } px-4 py-2 rounded`}
                   onClick={() => handleVote('Trump')}
               >
@@ -339,32 +330,32 @@ function Home() {
             {data?.content_about_project}
             </p>
           </div>
-          <div id="tokenomics" className="text-center mt-8">
-            <h2 className="text-2xl font-semibold mb-12 text-white bg-gradient-to-r p-5 shadow-orange-700 shadow-md mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-600 to-orange-600">{data?.tokenomics}</h2>
-            <div className="grid grid-cols-3 md:grid-cols-3 lg:gap-8 sm:gap-0">
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img src={VS} alt="Total Supply" className="lg:w-20 lg:h-20 sm:w-10 sm:h-10 object-cover object-center mx-auto mb-4" />
+          <div id="tokenomics" className="text-center mt-8" style={{width:"100%"}}>
+            <h2  className="lg:w-1/2 sm:w-full mx-auto text-2xl font-semibold mb-12 text-white bg-gradient-to-r p-5 shadow-orange-700 shadow-md mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-600 to-orange-600">{data?.tokenomics}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:w-1/2 sm:w-1/2 mx-auto">
+              <div className="bg-white p-6 rounded-lg shadow-md text-center w-3/4 sm:w-full lg:w-full mx-auto">
+                <img src={VS} alt="Total Supply" className="w-28 h-28 sm:w-20 sm:h-20 md:w-40 md:h-40 lg:w-20 lg:h-20 xl:w-20 xl:h-20 object-cover object-center mx-auto mb-4" />
                 <p className="text-lg font-medium">{data?.total_supply_title}</p>
                 <p className="text-red-500 lg:text-xl sm:text-xs">{data?.total_supply_number}</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img src={VS} alt="LB Burn" className="lg:w-20 lg:h-20 sm:w-10 sm:h-10 object-cover object-center mx-auto mb-4" />
+              <div className="bg-white p-6 rounded-lg shadow-md text-center w-3/4 sm:w-full lg:w-full mx-auto">
+                <img src={VS} alt="LB Burn" className="w-28 h-28 sm:w-20 sm:h-20 md:w-40 md:h-40 lg:w-20 lg:h-20 xl:w-20 xl:h-20 object-cover object-center mx-auto mb-4" />
                 <p className="text-lg font-medium">{data?.lb_burn}</p>
                 <p className="text-green-500 text-xl">{data?.yes}</p>
                 
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img src={VS} alt="Tax" className="lg:w-20 lg:h-20 sm:w-10 sm:h-10 object-cover object-center mx-auto mb-4" />
+              <div className="bg-white p-6 rounded-lg shadow-md text-center w-3/4 sm:w-full lg:w-full mx-auto">
+                <img src={VS} alt="Tax" className="w-28 h-28 sm:w-20 sm:h-20 md:w-40 md:h-40 lg:w-20 lg:h-20 xl:w-20 xl:h-20 object-cover object-center mx-auto mb-4" />
                 <p className="text-lg font-medium">{data?.tax}</p>
                 <p className="text-yellow-500 text-xl">{data?.zero}</p>
               </div>
             </div>
             {/*  */}
-            <div id='OurPartners' className="bg-beige p-8">
-              <h2 className="text-2xl font-semibold mb-12 text-white bg-gradient-to-r p-5 shadow-orange-700 shadow-md mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-600 to-orange-600">{data?.title_our_partners}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id='OurPartners' className="bg-beige mt-8" style={{width:"100%"}}>
+              <h2 className="lg:w-1/3 sm:w-full mx-auto text-2xl font-semibold mb-12 text-white bg-gradient-to-r p-5 shadow-orange-700 shadow-md mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-600 to-orange-600">{data?.title_our_partners}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:w-1/2 sm:p-8 mx-auto">
                 {partners.map((partner, index) => (
-                  <a target="_blank" rel="noopener noreferrer" href={partner.link} key={index} className="flex flex-col items-center bg-white rounded-lg shadow-md p-6">
+                  <a target="_blank" rel="noopener noreferrer" href={partner.link} key={index} className="w-3/4 sm:w-full lg:w-full flex flex-col items-center bg-white rounded-lg shadow-md p-6 mx-auto">
                     <img src={partner.logo} alt={partner.alt} className="h-16 mb-4" />
                     <span className="text-xl font-semibold text-center">{partner.name}</span>
                   </a>
@@ -374,14 +365,14 @@ function Home() {
             {/*  */}
             <button
               id="buy-now"
-              className="bg-red-500 text-white px-6 py-2 rounded-full mt-4 hover:bg-red-600"
+              className="bg-red-500 text-white font-bold px-8 py-2 rounded-full mt-6 hover:bg-red-800 shadow-red-600 shadow-md"
               onClick={handleBuyNow}
             >
               {data?.buy_now}
             </button>
           </div>
-          <div className="text-center mt-8 mb-2">
-        <h2 className="text-2xl font-semibold mb-12 text-white  bg-gradient-to-r p-5 shadow-orange-700 shadow-md mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-600 to-orange-600">
+          <div className="text-center mt-8 mb-2" style={{width:"100%"}}>
+        <h2 className="lg:w-1/4 sm:lg-full mx-auto text-2xl font-semibold mb-12 text-white  bg-gradient-to-r p-5 shadow-orange-700 shadow-md mt-5 bg-gradient-to-r from-blue-500 via-blue-400 via-orange-600 to-orange-600">
           {data?.title_social_media}
         </h2>
         <div className="flex justify-center space-x-4">
@@ -397,15 +388,6 @@ function Home() {
           <a target="_blank" rel="noopener noreferrer" href="https://telegram.org" className="text-blue-400 hover:underline">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 rounded-lg" />
           </a>
-          {/* <a target="_blank" rel="noopener noreferrer" href="https://raydium.io" className="hover:underline">
-            <img src="https://cdn.coin68.com/images/20240209084051-83f15054-0369-4d4e-b2c5-27b6398482d7-102.jpg" alt="Raydium" className="w-8 h-8 rounded-lg" />
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://dexscreener.com" className="hover:underline">
-            <img src="https://play-lh.googleusercontent.com/XNljDSnh_XmM53mREFo6SLXQDtedBh01bvNC7ReCLJSq-Nx2uCtg5pDGKH0OMLq4Uszh" alt="Dexscreener" className="w-8 h-8 rounded-lg" />
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://solana.com" className="hover:underline">
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png" alt="Solana" className="w-8 h-8 rounded-lg" />
-          </a> */}
         </div>
       </div>
   

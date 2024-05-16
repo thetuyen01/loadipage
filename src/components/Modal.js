@@ -35,8 +35,8 @@ const Modal = ({ isOpen, onClose }) => {
   
 
   return (
-<div className="fixed inset-0 bg-black bg-opacity-50 z-50 ">
-    <div className="relative bg-white p-10 rounded-lg sticky w-1/2 mx-auto mt-10 shadow-lg top-0 h-auto">
+<div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+    <div className="bg-white p-10 rounded-lg sticky lg:w-1/2 sm:w-full mx-auto mt-10 shadow-lg top-20 h-auto">
         <span className="absolute top-2 right-2">
             <button
                 onClick={onClose}
