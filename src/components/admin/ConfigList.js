@@ -31,7 +31,6 @@ const ListComponent = () => {
         if (confirmation) {
           try {
             const res = await axios.delete(`${config.domain}/api/votes/` + Number(id));
-            console.log('Record deleted successfully:', res.data);
           } catch (error) {
             console.log(error);
           }

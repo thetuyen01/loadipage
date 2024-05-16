@@ -47,6 +47,10 @@ const ConfigFromEdit = () => {
         linkRaydium: '',
         linkDexscreener: '',
         linkSolana: '',
+        linkFacebook: '',
+        linkTelegram:'',
+        linkTwitter:'',
+        linkInstagram:''
     });
     useEffect(() => {
         const fetchConfig = async () => {
@@ -58,7 +62,6 @@ const ConfigFromEdit = () => {
                     'Authorization': `Bearer ${localStorage.getItem('access')}`
                 },
             });
-            console.log('Data fetched successfully:', response.data);
             setFormData({
                 language: response.data.language || '',
                 titlePage: response.data.title_page || '',
@@ -87,6 +90,10 @@ const ConfigFromEdit = () => {
                 linkRaydium: response.data.link_raydium || '',
                 linkDexscreener: response.data.link_dexscreener || '',
                 linkSolana: response.data.link_solana || '',
+                linkFacebook:response.data.link_facebook || '',
+                linkTwitter:response.data.link_twitter || '',
+                linkInstagram:response.data.link_instagram || '',
+                linkTelegram:response.data.link_telegram || '',
               });
               setImagePreviews({
                 logo: response.data.logo ? `${config.doamin}${response.data.logo}` : null,
@@ -170,6 +177,10 @@ const ConfigFromEdit = () => {
         data.append('link_raydium', formData.linkRaydium);
         data.append('link_dexscreener', formData.linkDexscreener);
         data.append('link_solana', formData.linkSolana);
+        data.append('link_facebook', formData.linkFacebook);
+        data.append('link_telegram', formData.linkTelegram);
+        data.append('link_twitter', formData.linkTwitter);
+        data.append('link_instagram', formData.linkInstagram);
         try {
             const response = await axios.patch(`${config.doamin}/api/votes/`+Number(id), data, {
                 headers: {
@@ -180,7 +191,6 @@ const ConfigFromEdit = () => {
             if (response.status){
                 navigate('/admin/config')
             }
-            console.log('Form submitted successfully:', response);
         } catch (error) {
             console.error('Error submitting form:', error);
         }
@@ -201,9 +211,9 @@ const ConfigFromEdit = () => {
                 <label htmlFor="language" className="block text-sm font-medium text-gray-700">
                     Language
                 </label>
-                <select value={formData.language} onChange={(e) => setFormData(prve => ({...prve, language:e.target.value}))} id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select value={formData.language} onChange={(e) => setFormData(prve => ({...prve, language:e.target.value}))} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {contry.map(item=>(
-                        <option value={item.id}>{item.language}</option>
+                        <option key={item.id} value={item.id}>{item.language}</option>
                     ))}
                 </select>
             </div>
@@ -218,7 +228,7 @@ const ConfigFromEdit = () => {
                     name="logo"
                     id="logo"
                     onChange={handleChange}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.logo && (
                     <img src={imagePreviews.logo} alt="Logo Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -278,7 +288,7 @@ const ConfigFromEdit = () => {
                     name="imageCandidateOne"
                     id="imageCandidateOne"
                     onChange={handleChange}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateOne && (
                     <img src={imagePreviews.imageCandidateOne} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -294,7 +304,7 @@ const ConfigFromEdit = () => {
                     name="imageCandidateTwo"
                     id="imageCandidateTwo"
                     onChange={handleChange}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateTwo && (
                     <img src={imagePreviews.imageCandidateTwo} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -422,7 +432,7 @@ const ConfigFromEdit = () => {
                     name="imageCandidateOneVs"
                     id="imageCandidateOneVs"
                     onChange={handleChange}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateOneVs && (
                     <img src={imagePreviews.imageCandidateOneVs} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -438,7 +448,7 @@ const ConfigFromEdit = () => {
                     name="imageCandidateTwoVs"
                     id="imageCandidateTwoVs"
                     onChange={handleChange}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 {imagePreviews.imageCandidateTwoVs && (
                     <img src={imagePreviews.imageCandidateTwoVs} alt="Image Candidate One Preview" className="mt-2 h-24 w-24 object-cover rounded-md shadow" />
@@ -654,6 +664,63 @@ const ConfigFromEdit = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </div>
+            {/* Link facebook: */}
+            <div>
+                <label htmlFor="linkFacebook" className="block text-sm font-medium text-gray-700">
+                    Link facebook:
+                </label>
+                <input
+                    type="text"
+                    name="linkFacebook"
+                    id="linkFacebook"
+                    value={formData.linkFacebook}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+            {/* Link twitter: */}
+            <div>
+                <label htmlFor="linkTwitter" className="block text-sm font-medium text-gray-700">
+                    Link twitter:
+                </label>
+                <input
+                    type="text"
+                    name="linkTwitter"
+                    id="linkTwitter"
+                    value={formData.linkTwitter}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+            {/* Link Instagram: */}
+            <div>
+                <label htmlFor="linkInstagram" className="block text-sm font-medium text-gray-700">
+                    Link instagram:
+                </label>
+                <input
+                    type="text"
+                    name="linkInstagram"
+                    id="linkInstagram"
+                    value={formData.linkInstagram}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+            {/* Link telegram: */}
+            <div>
+                <label htmlFor="linkTelegram" className="block text-sm font-medium text-gray-700">
+                    Link telegram:
+                </label>
+                <input
+                    type="text"
+                    name="linkTelegram"
+                    id="linkTelegram"
+                    value={formData.linkTelegram}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+
 
             {/* Repeat similar structure for other fields */}
             

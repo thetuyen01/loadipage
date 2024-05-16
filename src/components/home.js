@@ -31,7 +31,6 @@ function Home() {
           const res = await axios.get(`${config.doamin}/api/configs`, {
             params: { language: language }
           });
-          console.log(res.data[0]);
           setData(res.data[0]);
         } catch (error) {
           console.log(error);
@@ -142,7 +141,6 @@ function Home() {
         const res = await axios.post(`${config.doamin}/api/votes`, {
           language:country
         });
-        console.log(res)
       }catch(error){
         console.log(error)
       }
@@ -234,7 +232,7 @@ function Home() {
               </div>
               <div className="ml-12 hidden md:flex items-center space-x-3 ">
                 <Flag onClick={()=>setLanguage('English')} code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
-                <Flag onClick={()=>setLanguage('China')} code="cn" style={{ width: 40, height: 30 }} alt="China Flag" />
+                {/* <Flag onClick={()=>setLanguage('China')} code="cn" style={{ width: 40, height: 30 }} alt="China Flag" /> */}
               </div>
             </div>
           </div>
@@ -246,7 +244,7 @@ function Home() {
             <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block text-center border font-bold py-2 px-4 text-sm hover:bg-gray-200 text-orange-600">{data?.buy_now}</a>
             <div className="flex justify-center space-x-4 mt-4">
               <Flag onClick={()=>setLanguage('English')} code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
-              <Flag onClick={()=>setLanguage('China')} code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" />
+              {/* <Flag onClick={()=>setLanguage('China')} code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" /> */}
             </div>
           </div>
         </nav>
@@ -376,16 +374,16 @@ function Home() {
           {data?.title_social_media}
         </h2>
         <div className="flex justify-center space-x-4">
-          <a target="_blank" rel="noopener noreferrer" href="https://facebook.com" className="text-blue-600 hover:underline">
+          <a target="_blank" rel="noopener noreferrer" href={data?.link_facebook} className="text-blue-600 hover:underline cursor-pointer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="w-8 h-8" />
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://twitter.com" className="text-blue-400 hover:underline">
-            <img src="https://images2.thanhnien.vn/528068263637045248/2023/7/24/f1x5vdqx0aa9sgt-16901896163331463104829.jpg" alt="Twitter" className="w-8 h-8 rounded-lg" />
+          <a target="_blank" rel="noopener noreferrer" href={data?.link_twitter} className="text-blue-400 hover:underline">
+            <img src="https://images2.thanhnien.vn/528068263637045248/2023/7/24/f1x5vdqx0aa9sgt-16901896163331463104829.jpg" alt="Twitter" className="w-8 h-8 rounded-lg cursor-pointer" />
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://instagram.com" className="text-pink-500 hover:underline">
+          <a target="_blank" rel="noopener noreferrer" href={data?.link_instagram} className="text-pink-500 hover:underline cursor-pointer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://telegram.org" className="text-blue-400 hover:underline">
+          <a target="_blank" rel="noopener noreferrer" href={data?.link_telegram} className="text-blue-400 hover:underline cursor-pointer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 rounded-lg" />
           </a>
         </div>
