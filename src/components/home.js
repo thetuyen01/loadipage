@@ -238,12 +238,12 @@ function Home() {
               </div>
             </div>
           </div>
-          <div ref={menuRef} className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-            <a onClick={()=>setIsOpen(false)} href="#vote-trump" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.btn_vote_candidate_one}</a>
-            <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.btn_vote_candidate_two}</a>
-            <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.tokenomics}</a>
-            <a onClick={()=>setIsOpen(false)} href="#OurPartners" className="block py-2 px-4 text-sm hover:bg-gray-200">{data?.title_our_partners}</a>
-            <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block py-2 px-4 text-sm hover:bg-gray-200 text-orange-600">{data?.buy_now}</a>
+          <div ref={menuRef} className={`md:hidden ${isOpen ? 'block' : 'hidden'} box`}>
+            <a onClick={()=>setIsOpen(false)} href="#vote-trump" className="block text-center border font-bold py-2 px-4 text-sm hover:bg-gray-200">{data?.btn_vote_candidate_one}</a>
+            <a onClick={()=>setIsOpen(false)} href="#vote-biden" className="block text-center border font-bold py-2 px-4 text-sm hover:bg-gray-200">{data?.btn_vote_candidate_two}</a>
+            <a onClick={()=>setIsOpen(false)} href="#tokenomics" className="block text-center border font-bold py-2 px-4 text-sm hover:bg-gray-200">{data?.tokenomics}</a>
+            <a onClick={()=>setIsOpen(false)} href="#OurPartners" className="block text-center border font-bold py-2 px-4 text-sm hover:bg-gray-200">{data?.title_our_partners}</a>
+            <a onClick={()=>setIsOpen(false)} href="#buy-now" className="block text-center border font-bold py-2 px-4 text-sm hover:bg-gray-200 text-orange-600">{data?.buy_now}</a>
             <div className="flex justify-center space-x-4 mt-4">
               <Flag onClick={()=>setLanguage('English')} code="us" style={{ width: 45, height: 50 }} alt="USA Flag" />
               <Flag onClick={()=>setLanguage('China')} code="cn" className='mt-2' style={{ width: 38, height: 33 }} alt="China Flag" />
