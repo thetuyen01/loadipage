@@ -42,7 +42,8 @@ const ConfigForm = () => {
         linkFacebook: '',
         linkTelegram:'',
         linkTwitter:'',
-        linkInstagram:''
+        linkInstagram:'',
+        linkBuyNow:''
     });
     const contry = [
         { language:"English", id:1 },
@@ -116,6 +117,7 @@ const ConfigForm = () => {
         data.append('link_telegram', formData.linkTelegram);
         data.append('link_twitter', formData.linkTwitter);
         data.append('link_instagram', formData.linkInstagram);
+        data.append('link_buy_now', formData.linkBuyNow)
         try {
             const response = await axios.post(`${config.doamin}/api/configs/add`, data, {
                 headers: {
@@ -648,6 +650,20 @@ const ConfigForm = () => {
                     name="linkTelegram"
                     id="linkTelegram"
                     value={formData.linkTelegram}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+            {/* Link Buy now: */}
+            <div>
+                <label htmlFor="linkBuyNow" className="block text-sm font-medium text-gray-700">
+                    Link buy now:
+                </label>
+                <input
+                    type="text"
+                    name="linkBuyNow"
+                    id="linkBuyNow"
+                    value={formData.linkBuyNow}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />

@@ -107,7 +107,7 @@ function Home() {
       // } catch (error) {
       //   toast.error("Please complete the captcha verification.");
       // }
-      window.open('https://dexview.com', '_blank');
+      window.open(data?.link_buy_now, '_blank');
     };
   
     const copyToClipboard = (text) => {

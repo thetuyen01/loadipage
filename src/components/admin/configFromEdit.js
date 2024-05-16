@@ -50,7 +50,8 @@ const ConfigFromEdit = () => {
         linkFacebook: '',
         linkTelegram:'',
         linkTwitter:'',
-        linkInstagram:''
+        linkInstagram:'',
+        linkBuyNow:''
     });
     useEffect(() => {
         const fetchConfig = async () => {
@@ -62,6 +63,7 @@ const ConfigFromEdit = () => {
                     'Authorization': `Bearer ${localStorage.getItem('access')}`
                 },
             });
+            console.log(response.data)
             setFormData({
                 language: response.data.language || '',
                 titlePage: response.data.title_page || '',
@@ -94,6 +96,7 @@ const ConfigFromEdit = () => {
                 linkTwitter:response.data.link_twitter || '',
                 linkInstagram:response.data.link_instagram || '',
                 linkTelegram:response.data.link_telegram || '',
+                linkBuyNow:response.data.link_buy_now || ''
               });
               setImagePreviews({
                 logo: response.data.logo ? `${config.doamin}${response.data.logo}` : null,
@@ -181,6 +184,7 @@ const ConfigFromEdit = () => {
         data.append('link_telegram', formData.linkTelegram);
         data.append('link_twitter', formData.linkTwitter);
         data.append('link_instagram', formData.linkInstagram);
+        data.append('link_buy_now', formData.linkBuyNow);
         try {
             const response = await axios.patch(`${config.doamin}/api/votes/`+Number(id), data, {
                 headers: {
@@ -716,6 +720,20 @@ const ConfigFromEdit = () => {
                     name="linkTelegram"
                     id="linkTelegram"
                     value={formData.linkTelegram}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+            {/* Link Buy now: */}
+            <div>
+                <label htmlFor="linkBuyNow" className="block text-sm font-medium text-gray-700">
+                    Link buy now:
+                </label>
+                <input
+                    type="text"
+                    name="linkBuyNow"
+                    id="linkBuyNow"
+                    value={formData.linkBuyNow}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
